@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\Interfaces\Repositories\**" />
+    <EmbeddedResource Remove="Common\Interfaces\Repositories\**" />
+    <None Remove="Common\Interfaces\Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 	<PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
@@ -15,12 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Server.Contracts\Server.Contracts.csproj" />
     <ProjectReference Include="..\Server.Domain\Server.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\Interfaces\" />
-    <Folder Include="Common\Interfaces\Services\" />
-    <Folder Include="Common\Interfaces\Repositories\" />
   </ItemGroup>
 
 </Project>

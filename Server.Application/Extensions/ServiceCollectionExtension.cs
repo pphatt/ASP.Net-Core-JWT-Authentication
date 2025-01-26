@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using Server.Application.Services.Authentication;
 using System.Reflection;
 
 namespace Server.Application.Extensions;
@@ -15,6 +16,8 @@ public static class ServiceCollectionExtension
 
         services.AddValidatorsFromAssembly(applicationAssembly)
             .AddFluentValidationAutoValidation();
+
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
 
         return services;
     }

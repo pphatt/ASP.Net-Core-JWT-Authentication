@@ -32,7 +32,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest request)
+    public IActionResult Register(RegisterRequest request)
     {
         var authenticationResult = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
 

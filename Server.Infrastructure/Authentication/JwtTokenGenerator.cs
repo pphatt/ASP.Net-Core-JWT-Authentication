@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Server.Application.Common.Interfaces.Authentication;
 using Server.Application.Common.Interfaces.Services;
+using Server.Domain.Entity.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -19,7 +20,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtSettings.Value;
     }
 
-    public string GenerateToken(Guid UserId, string FirstName, string LastName)
+    public string GenerateToken(AppUsers user)
     {
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
@@ -28,9 +29,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, UserId.ToString()),
-            new Claim(JwtRegisteredClaimNames.GivenName, FirstName.ToString()),
-            new Claim(JwtRegisteredClaimNames.FamilyName, LastName.ToString()),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName.ToString()),
+            new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         };
 

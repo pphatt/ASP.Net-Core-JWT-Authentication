@@ -1,21 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Server.Domain.Entity.Identity;
 
-namespace Server.Domain.Entity.Identity;
-
-[Table("AppUsers")]
-public class AppUsers : IdentityUser<Guid>
+public class AppUsers
 {
-    [MaxLength(50)]
-    public string? FirstName { get; set; } = default!;
+    public Guid Id { get; set; } = Guid.NewGuid();
 
-    [MaxLength(50)]
-    public string? LastName { get; set; } = default!;
+    public string? FirstName { get; set; } = null!;
 
-    public DateOnly? Dob { get; set; }
+    public string? LastName { get; set; } = null!;
 
-    public string? AccessToken { get; set; }
+    public string? Email { get; set; } = null!;
 
-    public string? RefreshToken { get; set; }
+    public string? Password { get; set; } = null!;
 }

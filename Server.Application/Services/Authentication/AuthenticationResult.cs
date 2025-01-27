@@ -1,3 +1,5 @@
-﻿namespace Server.Application.Services.Authentication;
+﻿using Server.Domain.Entity.Identity;
 
-public record AuthenticationResult(Guid Id, string FirstName, string LastName, string Email, string AccessToken);
+namespace Server.Application.Services.Authentication;
+
+public record AuthenticationResult(AppUsers user, string AccessToken);
